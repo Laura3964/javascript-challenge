@@ -27,10 +27,17 @@ function buildTable(data) {
    };
 
 //create a function to handle click
+function handleClick() {
 
+    //grab date/time value from filter
+    var date = d3.select("#datetime").property("value");
+    var filteredData = tableData;
+    filteredData = filteredData.filter(row => row.datetime === date);
+           buildTable(filteredData);
+}
 
 //attach an event listener to the button we created
-
+d3.select("#filter-btn").on("click", handleClick);
 
 //build the table when the page loads
 buildTable(tableData);
